@@ -1,11 +1,22 @@
 # seeds.rb
 
 # Create users
-user1 = User.create(name: "John Doe")
-user2 = User.create(name: "Jane Smith")
-user3 = User.create(name: "Michael Johnson")
-user4 = User.create(name: "Emily Brown")
-user5 = User.create(name: "David Williams")
+user1 = User.new(name: "John Doe", email: "john@example.com", password: "password")
+user2 = User.new(name: "Jane Smith", email: "jane@example.com", password: "password")
+user3 = User.new(name: "Michael Johnson", email: "michael@example.com", password: "password")
+user4 = User.new(name: "Emily Brown", email: "emily@example.com", password: "password")
+user5 = User.new(name: "David Williams", email: "david@example.com", password: "password")
+user1.skip_confirmation!
+user2.skip_confirmation!
+user3.skip_confirmation!
+user4.skip_confirmation!
+user5.skip_confirmation!
+user1.save!
+user2.save!
+user3.save!
+user4.save!
+user5.save!
+
 
 # Create recipes
 Recipe.create(
