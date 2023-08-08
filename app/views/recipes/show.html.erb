@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @recipe %>
+
+<div>
+  <%= link_to "Back to recipes", user_recipes_path %>
+  <% if recipe_author? %>
+    <%= button_to "Destroy this recipe", user_recipe_path(@recipe.user, @recipe), method: :delete %>
+  <% end %>
+</div>
