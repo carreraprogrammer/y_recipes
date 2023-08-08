@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  belongs_to :user, add_foreign_key: :user_id
+  belongs_to :user
   # has_many :food
   validates :name, presence: true
   validates :name, length: { minimum: 2 }
