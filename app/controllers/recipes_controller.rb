@@ -4,13 +4,11 @@ class RecipesController < ApplicationController
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.all.order(:created_at => :desc)
-    @current_user = User.find_by(id: params[:user_id])
   end
 
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
-    @current_user = User.find_by(id: params[:user_id])
   end
 
   # GET /recipes/new
