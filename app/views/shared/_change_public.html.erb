@@ -5,4 +5,6 @@
         <%= form.check_box :public, class: "public-checkbox", onchange: "this.form.submit()" %>
       </div>
     <%end%>
+  <% else %>
+    <p> Public </p>
   <% end %>

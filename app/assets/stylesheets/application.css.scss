@@ -44,10 +44,11 @@ button {
 .appButtons {
   @include center;
   height: 2rem;
-  padding: 5px;
+  padding: 24px;
   max-width: 300px;
   border: 1px solid black;
   margin: 24px;
+  height: 50px;
 }
 
 .navbar {
@@ -168,6 +169,29 @@ button {
   }
 }
 
+/* FOR PUBLIC RECIPES */
+
+.publicRecipeContainer {
+  border: 1px solid black;
+  width: 95%;
+  margin: 12px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  * {
+    @include center;
+  }
+  h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  p {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
 
 /* PC STYLES */
 
@@ -193,6 +217,8 @@ button {
       font-size: 2rem;
     }
   }
+
+  /* FOR RECIPE SHOW PC */
 
   .recipeShowGeneralInfo {
     width: 70%;
@@ -224,4 +250,20 @@ button {
       padding: 12px;
     }
   }
+
+  /* FOR PUBLIC RECIPE */
+  .publicRecipeContainer {
+    width: 70%;
+    margin: 24px;
+    padding: 24px;
+    min-height: 25vh;
+    h2 {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 1.5rem;
+      text-align: left;
+    }
+  }
+
 }
