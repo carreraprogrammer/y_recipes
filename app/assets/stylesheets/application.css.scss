@@ -14,10 +14,28 @@
  *= require_self
  */
 
+ /* RESET */
+
+ * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* END RESET */
+
 @import 'mixins';
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 .navbar {
@@ -42,5 +60,69 @@ a {
 
   .logOut:hover {
     color: red;
+  }
+}
+
+.pageTitle {
+  font-size: 3rem;
+  margin: 20px;
+}
+
+#recipes {
+  @include center-column;
+  margin-top: 50px;
+}
+
+.recipeIndexContainer {
+  @include center;
+  border: 1px solid black;
+  width: 95%;
+  min-height: 20vh;
+  margin-top: 20px;
+  div {
+   @include center-column;
+   justify-content: flex-end;
+   flex-basis: 40%;
+   height: 100%;
+   min-height: 20vh;
+   h2 {
+    font-size: 2rem;
+    text-align: center;
+   }
+   button {
+    text-decoration: underline;
+    border: none;
+    background-color: white;
+    color: #337ab7;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 24px;
+   }
+  }
+  p {
+    flex-basis: 60%;
+    font-size: 1.5rem;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .navbar {
+    font-size: 2rem;
+  }
+  .recipeIndexContainer {
+    width: 80%;
+    div {
+      flex-basis: 50%;
+      h2 {
+        font-size: 3rem;
+      }
+      button {
+        font-size: 1.5rem;
+      }
+    }
+    p {
+      font-size: 2rem;
+    }
   }
 }

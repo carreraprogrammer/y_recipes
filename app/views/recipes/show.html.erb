@@ -13,8 +13,4 @@
 
 <div>
   <%= link_to "Back to recipes", recipes_path %>
-  
-  <% if recipe_author? %>
-    <%= button_to "Destroy this recipe", recipe_path(current_user, @recipe), method: :delete %>
-  <% end %>
 </div>

@@ -1,17 +1,9 @@
 
 <p style="color: green"><%= notice %></p>
 
-<h1> MY RECIPES </h1>
-
-<h1>Recipes</h1>
-
 <div id="recipes">
+<h1 class="pageTitle"> MY RECIPES </h1>
   <% @recipes.each do |recipe| %>
     <%= render recipe %>
-    <p>
-      <%= link_to "Show this recipe", recipe_path(recipe.id) %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New recipe", new_recipe_path(current_user) %>
