@@ -4,6 +4,6 @@ class LandingPagesController < ApplicationController
   def home
     return unless user_signed_in?
 
-    redirect_to user_path(current_user)
+    redirect_to recipes_path
   end
 end
