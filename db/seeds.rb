@@ -1,7 +1,7 @@
 # seeds.rb
 
 # Create users
-user1 = User.new(name: "John Doe", email: "john@example.com", password: "password")
+user1 = User.new(name: "John Doe", email: "johnny@example.com", password: "password")
 user2 = User.new(name: "Jane Smith", email: "jane@example.com", password: "password")
 user3 = User.new(name: "Michael Johnson", email: "michael@example.com", password: "password")
 user4 = User.new(name: "Emily Brown", email: "emily@example.com", password: "password")
