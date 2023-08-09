@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[ show edit update destroy ]
+  before_action :set_recipe, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all.order(:created_at => :desc)
+    @recipes = Recipe.all.order(created_at: :desc)
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -14,7 +16,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/new
   def new
-    @recipe = Recipe.new()
+    @recipe = Recipe.new
   end
 
   # POST /recipes or /recipes.json
@@ -24,7 +26,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to user_recipe_path(@recipe.user, @recipe), notice: "Recipe was successfully created." }
+        format.html { redirect_to user_recipe_path(@recipe.user, @recipe), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,19 +40,21 @@ class RecipesController < ApplicationController
     @recipe.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_recipes_url, notice: "Recipe was successfully destroyed." }
+      format.html { redirect_to user_recipes_url, notice: 'Recipe was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def recipe_params
-      params.require(:recipe).permit(:name, :preparation_time_minutes, :cooking_time_minutes, :description, :public, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def recipe_params
+    params.require(:recipe).permit(:name, :preparation_time_minutes, :cooking_time_minutes, :description, :public,
+                                   :user_id)
+  end
 end
