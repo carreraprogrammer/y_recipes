@@ -1,4 +1,11 @@
-<%= render 'shared/logout'%>
+<% if recipe_author? %>
+  <%= form_with(model: @recipe) do |form| %>
+    <div>
+      <%= form.label :public, style: "display: block" %>
+      <%= form.check_box :public, class: "public-checkbox", onchange: "this.form.submit()" %>
+    </div>
+  <%end%>
+<% end %>
 
 <p style="color: green"><%= notice %></p>
 
@@ -6,6 +13,7 @@
 
 <div>
   <%= link_to "Back to recipes", recipes_path %>
+  
   <% if recipe_author? %>
     <%= button_to "Destroy this recipe", recipe_path(current_user, @recipe), method: :delete %>
   <% end %>

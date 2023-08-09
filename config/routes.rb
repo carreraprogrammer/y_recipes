@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     confirmation: 'verification'
   }
   get 'public_recipes', to: 'recipes#public_recipes'
-  resources :recipes, only: %i[index show new create destroy my_recipes]
+  resources :recipes
   resources :foods
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

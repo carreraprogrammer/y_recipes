@@ -1,4 +1,3 @@
-<%= render 'shared/logout'%>
 
 <p style="color: green"><%= notice %></p>
 
@@ -10,7 +9,7 @@
   <% @recipes.each do |recipe| %>
     <%= render recipe %>
     <p>
-      <%= link_to "Show this recipe", recipe_path(current_user, recipe.id) %>
+      <%= link_to "Show this recipe", recipe_path(recipe.id) %>
     </p>
   <% end %>
 </div>
