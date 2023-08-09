@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'landing_pages#home'
 
@@ -9,9 +11,10 @@ Rails.application.routes.draw do
     confirmation: 'verification'
   }
 
-  resources :users, only: [:index, :show] do
-    resources :recipes, only: [:index, :show, :new, :create, :destroy]
+  resources :users, only: %i[index show] do
+    resources :recipes, only: %i[index show new create destroy]
   end
+  resources :foods
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
