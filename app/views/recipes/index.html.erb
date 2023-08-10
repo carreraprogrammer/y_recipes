@@ -1,16 +1,16 @@
-<%= render 'shared/logout'%>
 
 <p style="color: green"><%= notice %></p>
 
-<h1>Recipes</h1>
+<div class="generalContainer">
+  <h1 class="pageTitle"> MY RECIPES </h1>
+  <%if recipes?%>
+    <% @recipes.each do |recipe| %>
+      <%= render recipe %>
+    <% end %>
+  <%else%>
+    <p> You have no recipes yet. But you can add some bellow !! </p>
+  <%end%>
 
-<div id="recipes">
-  <% @recipes.each do |recipe| %>
-    <%= render recipe %>
-    <p>
-      <%= link_to "Show this recipe", user_recipe_path(current_user, recipe.id) %>
-    </p>
-  <% end %>
+  <%= link_to "New recipe", new_recipe_path, class: "appButtons" %>
+
 </div>
-
-<%= link_to "New recipe", new_user_recipe_path(current_user) %>

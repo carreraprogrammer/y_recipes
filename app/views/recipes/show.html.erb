@@ -1,12 +1,31 @@
-<%= render 'shared/logout'%>
-
 <p style="color: green"><%= notice %></p>
 
-<%= render @recipe %>
+<div class="generalContainer">
+  <div>
+    <%= link_to "Back to recipes", recipes_path %>
+  </div>
 
-<div>
-  <%= link_to "Back to recipes", user_recipes_path %>
-  <% if recipe_author? %>
-    <%= button_to "Destroy this recipe", user_recipe_path(@recipe.user, @recipe), method: :delete %>
-  <% end %>
+  <h1 class="pageTitle"> <%= capitalize_text(@recipe.name )%></h1>
+  <div class="recipeShowGeneralInfo">
+    <p class="preparationTime"><strong>Preparation Time: </strong> <%= @recipe.preparation_time_minutes %></p>
+    <%=render 'shared/change_public', recipe: @recipe%>
+    <p class="cookingTime"><strong>Cooking Time: </strong> <%= @recipe.cooking_time_minutes %></p>
+    <p class="recipeDescription"><%= @recipe.description %></p>
+    <button>Generate Shopping List</button>
+    <button>Add Ingredient</button>
+  </div>
+  <table class="ingredientsTable">
+    <tr>
+      <th> Food </th>
+      <th> Quantity </th>
+      <th> Value </th>
+      <th> Actions </th>
+    </tr>
+    <tr>
+      <td> Apple </td>
+      <td> 2 </td>
+      <td> $1 </td>
+      <td> Edit Remove </td>
+    </tr>
+  </table>
 </div>

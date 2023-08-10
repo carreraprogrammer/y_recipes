@@ -6,7 +6,12 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all.order(created_at: :desc)
+    @recipes = Recipe.all.order(created_at: :desc).where(user_id: current_user.id)
+
+  end
+
+  def public_recipes
+    @recipes = Recipe.all.order(created_at: :desc).where(public: true)
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -22,14 +27,29 @@ class RecipesController < ApplicationController
   # POST /recipes or /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.user = User.find(params[:user_id])
+    @recipe.user = current_user
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to user_recipe_path(@recipe.user, @recipe), notice: 'Recipe was successfully created.' }
+        format.html { redirect_to recipes_path, notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @recipe.update(recipe_params)
+        format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated." }
+        format.json { render :show, status: :ok, location: @recipe }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
@@ -40,7 +60,7 @@ class RecipesController < ApplicationController
     @recipe.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_recipes_url, notice: 'Recipe was successfully destroyed.' }
+      format.html { redirect_to recipes_path, notice: 'Recipe was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

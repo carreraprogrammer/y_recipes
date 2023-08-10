@@ -1,0 +1,10 @@
+  <% if recipe_author?(recipe.user) %>
+    <%= form_with(model: recipe) do |form| %>
+      <div>
+        <%= form.label :public, style: "display: block" %>
+        <%= form.check_box :public, class: "public-checkbox", onchange: "this.form.submit()" %>
+      </div>
+    <%end%>
+  <% else %>
+    <p> Public </p>
+  <% end %>

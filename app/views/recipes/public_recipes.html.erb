@@ -1,0 +1,20 @@
+<div class="generalContainer">
+  <p style="color: green"><%= notice %></p>
+
+  <h1 class="pageTitle"> PUBLIC RECIPES </h1>
+
+  <% @recipes.each do |recipe| %>
+    <div class="publicRecipeContainer">
+      <h2>
+        <%= link_to recipe_path(recipe) do %>
+          <%= recipe.name %>
+        <% end %>
+      </h2>
+      <p>
+        Total Food Items: <br>
+        Total Price:
+      </p>
+      <p>By: <%= recipe.user.name %></p>
+    </div>
+  <% end %>
+</div>

@@ -10,10 +10,8 @@ Rails.application.routes.draw do
     password: 'password',
     confirmation: 'verification'
   }
-
-  resources :users, only: %i[index show] do
-    resources :recipes, only: %i[index show new create destroy]
-  end
+  get 'public_recipes', to: 'recipes#public_recipes'
+  resources :recipes
   resources :foods
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
