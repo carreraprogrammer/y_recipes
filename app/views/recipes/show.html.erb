@@ -19,11 +19,16 @@
       <th> Value </th>
       <th> Actions </th>
     </tr>
-    <tr>
-      <td> Apple </td>
-      <td> 2 </td>
-      <td> $1 </td>
-      <td> Edit Remove </td>
-    </tr>
+    <% @recipe.recipe_foods.each do | ingredient |%>
+      <tr>
+        <td><%= ingredient.food.name  %></td>
+        <td> <%= ingredient.quantity  %> <%= ingredient.food.measurement_unit %>s</td>
+        <td> $<%= ingredient.food.price%> </td>
+        <td> 
+          <a> Edit </a> 
+          <a> Remove </a> 
+        </td>
+      </tr>
+    <% end %>
   </table>
 </div>
