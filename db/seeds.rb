@@ -94,3 +94,76 @@ Recipe.create(
 )
 
 puts 'Seeds created successfully.'
+
+
+# Create foods
+Food.create(
+  name: 'Chicken',
+  measurement_unit: 'pound',
+  price: 10.99,
+  quantity: 5,
+  user: user1
+)
+
+Food.create(
+  name: 'Mushrooms',
+  measurement_unit: 'ounce',
+  price: 3.49,
+  quantity: 8,
+  user: user2
+)
+
+Food.create(
+  name: 'Ground Beef',
+  measurement_unit: 'pound',
+  price: 8.99,
+  quantity: 3,
+  user: user3
+)
+
+Food.create(
+  name: 'Salmon Fillet',
+  measurement_unit: 'piece',
+  price: 12.95,
+  quantity: 4,
+  user: user4
+)
+
+Food.create(
+  name: 'Pasta',
+  measurement_unit: 'ounce',
+  price: 1.99,
+  quantity: 20,
+  user: user5
+)
+
+# Create recipe_foods (associating foods with recipes)
+RecipeFood.create(
+  quantity: 2,
+  recipe: Recipe.find_by(name: 'Homestyle Chicken Pot Pie'),
+  food: Food.find_by(name: 'Chicken')
+)
+
+RecipeFood.create(
+  quantity: 6,
+  recipe: Recipe.find_by(name: 'Creamy Mushroom Risotto'),
+  food: Food.find_by(name: 'Mushrooms')
+)
+
+RecipeFood.create(
+  quantity: 1,
+  recipe: Recipe.find_by(name: 'Spicy Beef Tacos'),
+  food: Food.find_by(name: 'Ground Beef')
+)
+
+RecipeFood.create(
+  quantity: 4,
+  recipe: Recipe.find_by(name: 'Lemon Herb Grilled Salmon'),
+  food: Food.find_by(name: 'Salmon Fillet')
+)
+
+RecipeFood.create(
+  quantity: 8,
+  recipe: Recipe.find_by(name: 'Pesto Pasta with Sun-Dried Tomatoes'),
+  food: Food.find_by(name: 'Pasta')
+)
