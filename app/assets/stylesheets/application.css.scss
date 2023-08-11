@@ -244,10 +244,24 @@ button {
     th {
       font-size: 2rem;
       padding: 12px;
+      width: 25%;
     }
     td {
       font-size: 1.5rem;
       padding: 12px;
+      width: 25%;
+    }
+    .ingredientForm {
+      display: none;
+      #ingredientSubmit {
+        background-color: white;
+        padding: 5px;
+        cursor: pointer;
+      }
+      td {
+        height: 3rem;
+        padding: 2px;
+      }
     }
   }
 

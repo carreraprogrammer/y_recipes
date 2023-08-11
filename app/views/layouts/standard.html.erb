@@ -10,13 +10,18 @@
 
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <%if user_signed_in? %>
       <%= render 'shared/navbar'%>
     <%end%>
+    <%= render 'shared/flash' %>
     <%= yield %>
+      <script>
+      setTimeout(function() {
+        document.getElementById("flash-notice").style.display = "none";
+    }, 3000)
+    </script>
   </body>
 </html>
