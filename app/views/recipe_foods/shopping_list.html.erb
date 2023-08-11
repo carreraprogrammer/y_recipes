@@ -1,21 +1,20 @@
 <div class="shoppingListContainer">
-
-  <h1 class="pageTitle"> SHOPING LIST </h1>
+  <h1 class="pageTitle">SHOPPING LIST</h1>
   <table>
-      <tr>
+    <tr>
       <th>Food</th>
       <th>Quantity</th>
       <th>Price</th>
     </tr>
-    <%@recipe_foods.each do | ingredient |%>
-      <%if ingredient.food.quantity < ingredient.quantity %>
+    <% @recipe_foods.each do |food_id, recipe_foods| %>
+      <% food = Food.find(food_id) %>
+      <%if recipe_foods.sum(&:total_quantity) > food.quantity %>
         <tr>
-          <td><%= ingredient.food.name %></td>
-          <td><%= ingredient.quantity - ingredient.food.quantity%></td>
-          <td>$ <%=(ingredient.quantity - ingredient.food.quantity) * ingredient.food.price %></td>
+          <td><%= food.name %></td>
+          <td><%= recipe_foods.sum(&:total_quantity) - food.quantity %></td>
+          <td>$ <%= (recipe_foods.map(&:quantity).sum - food.quantity) * food.price %></td>
         </tr>
       <%end%>
-    <%end%>
+    <% end %>
   </table>
-
 </div>

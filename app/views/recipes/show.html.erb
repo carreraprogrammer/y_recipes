@@ -32,15 +32,15 @@
       <% end %>
       <tr class="ingredientForm"> <!-- Added class -->
         <%= form_with(model: RecipeFood.new(), url: recipe_foods_path, class: "ingredientForm") do |form| %>
-              <%= form.hidden_field :recipe_id, value: @recipe.id %>
-              <td>
-                <%= form.select :food_id, options_for_select(@foods.map { |food| [food.name, food.id] }) %>
-              </td>
-              <td>
-                <%= form.number_field :quantity, placeholder: "Quantity" %>
-              </td>
-              <td>Add ingredient here</td>
-              <td><%= form.submit %></td>
+          <%= form.hidden_field :recipe_id, value: @recipe.id %>
+          <td>
+            <%= form.select :food_id, options_for_select(@foods.map { |food| [food.name, food.id] }) %>
+          </td>
+          <td>
+            <%= form.number_field :quantity, placeholder: "Quantity" %>
+          </td>
+          <td>Add ingredient here</td>
+          <td><%= form.submit %></td>
         <% end %>
       </tr>
     </table>

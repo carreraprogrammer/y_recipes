@@ -60,7 +60,10 @@ class RecipeFoodsController < ApplicationController
   end
 
   def shopping_list
-    @recipe_foods = RecipeFood.includes(:food, :recipe).where(recipes: { user_id: current_user.id })
+    @recipe_foods = RecipeFood
+                    .includes(:food, :recipe)
+                    .where(recipes: { user_id: current_user.id })
+                    .group_by(&:food_id)
   end
 
   private
