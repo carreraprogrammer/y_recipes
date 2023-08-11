@@ -50,11 +50,12 @@ class RecipeFoodsController < ApplicationController
 
   # DELETE /recipe_foods/1 or /recipe_foods/1.json
   def destroy
-    @recipe_food.destroy
-
-    respond_to do |format|
-      format.html { redirect_to recipe_foods_url, notice: "Recipe food was successfully destroyed." }
-      format.json { head :no_content }
+    if @recipe_food.destroy
+      flash[:notice] = "Food removed from recipe"
+      redirect_to request.referrer 
+    else
+      flash[:alert] = @recipe_food.errors.full_messages.join(", ")
+      redirect_to request.referrer 
     end
   end
 

@@ -26,7 +26,7 @@
           <td>$<%= ingredient.food.price %></td>
           <td>
             <a> Edit </a>
-            <a> Remove </a>
+            <%= button_to "Remove", ingredient, method: :delete %>
           </td>
         </tr>
       <% end %>
