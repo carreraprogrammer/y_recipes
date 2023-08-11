@@ -10,42 +10,47 @@
     <p class="cookingTime"><strong>Cooking Time: </strong> <%= @recipe.cooking_time_minutes %></p>
     <p class="recipeDescription"><%= @recipe.description %></p>
     <button>Generate Shopping List</button>
-    <button id="addIngredientButton">Add Ingredient</button> <!-- Added id -->
+    <button id="addIngredientButton" onclick=">Add Ingredient</button> <!-- Added id -->
   </div>
-  <table class="ingredientsTable">
-    <tr>
-      <th> Food </th>
-      <th> Quantity </th>
-      <th> Value </th>
-      <th> Actions </th>
-    </tr>
-    <% @recipe.recipe_foods.each do |ingredient| %>
+    <table class="ingredientsTable">
       <tr>
-        <td><%= ingredient.food.name %></td>
-        <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %>s</td>
-        <td>$<%= ingredient.food.price %></td>
-        <td>
-          <a> Edit </a>
-          <a> Remove </a>
-        </td>
+        <th> Food </th>
+        <th> Quantity </th>
+        <th> Value </th>
+        <th> Actions </th>
       </tr>
-    <% end %>
-    <tr class="ingredientForm"> <!-- Added class -->
-      <form>
-        <td><input id="getName" type="text" name="name" /></td>
-        <td><input id="getName" type="text" name="name" /></td>
-        <td>Add ingredient here</td>
-        <td><input type="submit" value="Save ingredient" id="ingredientSubmit"/></td>
-      </form>
-    </tr>
-  </table>
+      <% @recipe.recipe_foods.each do |ingredient| %>
+        <tr>
+          <td><%= ingredient.food.name %></td>
+          <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %>s</td>
+          <td>$<%= ingredient.food.price %></td>
+          <td>
+            <a> Edit </a>
+            <a> Remove </a>
+          </td>
+        </tr>
+      <% end %>
+      <%= form_with(model: @recipe_food, url: recipe_foods_path, class: "ingredientForm") do |form| %>
+         <tr class="ingredientForm"> <!-- Added class -->
+            <%= form.hidden_field :recipe_id, value: @recipe.id %>
+            <td>
+              <%= form.select :food_id, options_for_select(@foods.map { |food| [food.name, food.id] }) %>
+            </td>
+            <td>
+              <%= form.number_field :quantity, placeholder: "Quantity" %>
+            </td>
+            <td>Add ingredient here</td>
+            <td><%= form.submit %></td>
+          </tr>
+      <% end %>
+    </table>
 </div>
 
 <script>
   document.getElementById("addIngredientButton").addEventListener("click", function() {
     const ingredientForm = document.querySelector(".ingredientForm");
     const ingredientInput = document.querySelector("#getName");
-    ingredientForm.style.display = ingredientForm.style.display === "table-row" ? "none" : "table-row";
+    ingredientForm.style.display = ingredientForm.style.display === "none" ? "table-row" : "none";
     ingredientInput.focus();
   });
 </script>

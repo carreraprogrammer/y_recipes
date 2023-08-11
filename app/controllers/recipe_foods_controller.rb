@@ -22,14 +22,15 @@ class RecipeFoodsController < ApplicationController
   # POST /recipe_foods or /recipe_foods.json
   def create
     @recipe_food = RecipeFood.new(recipe_food_params)
+    @recipe_food.save!
 
     respond_to do |format|
       if @recipe_food.save
-        format.html { redirect_to recipe_food_url(@recipe_food), notice: "Recipe food was successfully created." }
-        format.json { render :show, status: :created, location: @recipe_food }
+        flash[:notice] = "Food added to recipe"
+        format.html { redirect_to request.referrer }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe_food.errors, status: :unprocessable_entity }
+        flash[:alert] = @recipe_food.errors.full_messages.join(", ")
+        format.html { redirect_to request.referrer }
       end
     end
   end

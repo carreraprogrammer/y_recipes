@@ -252,7 +252,7 @@ button {
       width: 25%;
     }
     .ingredientForm {
-      display: none;
+
       #ingredientSubmit {
         background-color: white;
         padding: 5px;
@@ -261,13 +261,6 @@ button {
       td {
         height: 3rem;
         padding: 2px;
-        #getName {
-          height: 100%;
-          width: 100%;
-          outline: 2px solid rgb(11, 255, 11);
-          border: none;
-          padding: 12px;
-        }
       }
     }
   }

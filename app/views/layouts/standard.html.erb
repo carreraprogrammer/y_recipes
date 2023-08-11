@@ -17,37 +17,13 @@
     <%if user_signed_in? %>
       <%= render 'shared/navbar'%>
     <%end%>
-    <div id="flash-notice" class="flash-message" style="color: green;">
-      <% if flash[:notice] %>
-        <div class="flash-message notice">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-
-      <% if flash[:alert] %>
-        <div class="flash-message alert">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
-
-      <% if flash[:warning] %>
-        <div class="flash-message warning">
-          <%= flash[:warning] %>
-        </div>
-      <% end %>
-
-      <% if flash[:info] %>
-        <div class="flash-message info">
-          <%= flash[:info] %>
-        </div>
-      <% end %>
-    </div>
-
+    <%= render 'shared/flash' %>
+    <%=turbo_frame_tag "ingredientsTable" %>
     <%= yield %>
       <script>
       setTimeout(function() {
         document.getElementById("flash-notice").style.display = "none";
-    }, 2000)
+    }, 3000)
     </script>
   </body>
 </html>
