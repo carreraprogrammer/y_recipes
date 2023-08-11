@@ -20,20 +20,20 @@ class RecipeFoodsController < ApplicationController
   end
 
   # POST /recipe_foods or /recipe_foods.json
-  def create
-    @recipe_food = RecipeFood.new(recipe_food_params)
-    @recipe_food.save!
+# POST /recipe_foods or /recipe_foods.json
+    def create
+      @recipe_food = RecipeFood.new(recipe_food_params)
 
-    respond_to do |format|
-      if @recipe_food.save
-        flash[:notice] = "Food added to recipe"
-        format.html { redirect_to request.referrer }
-      else
-        flash[:alert] = @recipe_food.errors.full_messages.join(", ")
-        format.html { redirect_to request.referrer }
+      respond_to do |format|
+        if @recipe_food.save
+          flash[:notice] = "Food added to recipe"
+          format.html { redirect_to request.referrer }
+        else
+          flash[:alert] = @recipe_food.errors.full_messages.join(", ")
+          format.html { redirect_to request.referrer }
+        end
       end
     end
-  end
 
   # PATCH/PUT /recipe_foods/1 or /recipe_foods/1.json
   def update

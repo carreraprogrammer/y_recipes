@@ -10,7 +10,7 @@
     <p class="cookingTime"><strong>Cooking Time: </strong> <%= @recipe.cooking_time_minutes %></p>
     <p class="recipeDescription"><%= @recipe.description %></p>
     <button>Generate Shopping List</button>
-    <button id="addIngredientButton" onclick=">Add Ingredient</button> <!-- Added id -->
+    <button id="addIngredientButton">Add Ingredient</button>
   </div>
     <table class="ingredientsTable">
       <tr>
@@ -30,19 +30,19 @@
           </td>
         </tr>
       <% end %>
-      <%= form_with(model: @recipe_food, url: recipe_foods_path, class: "ingredientForm") do |form| %>
-         <tr class="ingredientForm"> <!-- Added class -->
-            <%= form.hidden_field :recipe_id, value: @recipe.id %>
-            <td>
-              <%= form.select :food_id, options_for_select(@foods.map { |food| [food.name, food.id] }) %>
-            </td>
-            <td>
-              <%= form.number_field :quantity, placeholder: "Quantity" %>
-            </td>
-            <td>Add ingredient here</td>
-            <td><%= form.submit %></td>
-          </tr>
-      <% end %>
+      <tr class="ingredientForm"> <!-- Added class -->
+        <%= form_with(model: RecipeFood.new(), url: recipe_foods_path, class: "ingredientForm") do |form| %>
+              <%= form.hidden_field :recipe_id, value: @recipe.id %>
+              <td>
+                <%= form.select :food_id, options_for_select(@foods.map { |food| [food.name, food.id] }) %>
+              </td>
+              <td>
+                <%= form.number_field :quantity, placeholder: "Quantity" %>
+              </td>
+              <td>Add ingredient here</td>
+              <td><%= form.submit %></td>
+        <% end %>
+      </tr>
     </table>
 </div>
 
@@ -50,7 +50,6 @@
   document.getElementById("addIngredientButton").addEventListener("click", function() {
     const ingredientForm = document.querySelector(".ingredientForm");
     const ingredientInput = document.querySelector("#getName");
-    ingredientForm.style.display = ingredientForm.style.display === "none" ? "table-row" : "none";
-    ingredientInput.focus();
+    ingredientForm.style.display = ingredientForm.style.display === "table-row" ? "none" : "table-row";
   });
 </script>

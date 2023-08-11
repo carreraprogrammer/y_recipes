@@ -10,7 +10,6 @@
 
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
   </head>
 
   <body>
@@ -18,7 +17,6 @@
       <%= render 'shared/navbar'%>
     <%end%>
     <%= render 'shared/flash' %>
-    <%=turbo_frame_tag "ingredientsTable" %>
     <%= yield %>
       <script>
       setTimeout(function() {
