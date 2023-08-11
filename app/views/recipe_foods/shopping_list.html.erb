@@ -1,0 +1,21 @@
+<div class="shoppingListContainer">
+
+  <h1 class="pageTitle"> SHOPING LIST </h1>
+  <table>
+      <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    <%@recipe_foods.each do | ingredient |%>
+      <%if ingredient.food.quantity < ingredient.quantity %>
+        <tr>
+          <td><%= ingredient.food.name %></td>
+          <td><%= ingredient.quantity - ingredient.food.quantity%></td>
+          <td>$ <%=(ingredient.quantity - ingredient.food.quantity) * ingredient.food.price %></td>
+        </tr>
+      <%end%>
+    <%end%>
+  </table>
+
+</div>

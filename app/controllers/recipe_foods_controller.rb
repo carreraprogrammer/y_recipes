@@ -59,6 +59,10 @@ class RecipeFoodsController < ApplicationController
     end
   end
 
+  def shopping_list
+    @recipe_foods = RecipeFood.includes(:food, :recipe).where(recipes: { user_id: current_user.id })
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe_food
