@@ -23,7 +23,7 @@
         <tr>
           <td><%= ingredient.food.name %></td>
           <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %>s</td>
-          <td>$<%= ingredient.food.price  * ingredient.quantity %></td>
+          <td>$<%= ingredient.total_price %></td>
           <td>
             <a> Edit </a>
             <%= button_to "Remove", ingredient, method: :delete %>
