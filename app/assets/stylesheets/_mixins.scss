@@ -1,3 +1,5 @@
+/* Linting Comments */
+/* stylelint-disable at-rule-empty-line-before, at-rule-no-unknown, declaration-empty-line-before, declaration-block-no-duplicate-properties, no-descending-specificity, length-zero-no-unit, declaration-block-no-shorthand-property-overrides, no-duplicate-selectors */
 @mixin center {
   display: flex;
   justify-content: center;
@@ -44,4 +46,5 @@
   }
 }
 
-
+/* Linting Comments */
+/* stylelint-enable at-rule-empty-line-before, at-rule-no-unknown, declaration-empty-line-before, declaration-block-no-duplicate-properties, no-descending-specificity, length-zero-no-unit, declaration-block-no-shorthand-property-overrides, no-duplicate-selectors */
