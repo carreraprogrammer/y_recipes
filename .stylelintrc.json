@@ -12,7 +12,8 @@
           "responsive",
           "screen",
           "mixin",
-          "include"]
+          "include"
+        ]
       }
     ],
     "scss/at-rule-no-unknown": [
@@ -28,7 +29,8 @@
         ]
       }
     ],
-    "csstree/validator": true
+    "csstree/validator": true,
+    "no-descending-specificity": null
   },
   "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css"]
 }
