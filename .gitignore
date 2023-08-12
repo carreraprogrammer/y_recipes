@@ -31,3 +31,6 @@
 /config/master.key
 
 /app/assets/builds
+
+# Ignore Node.js modules
+node_modules/

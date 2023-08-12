@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update destroy]
   before_action :authenticate_user!
@@ -7,18 +5,17 @@ class RecipesController < ApplicationController
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.includes(:foods).all.order(created_at: :desc).where(user_id: current_user.id)
-
   end
 
   def public_recipes
-    @recipes = Recipe.all.order(created_at: :desc).where(public: true)
+    @recipes = Recipe.includes(:user, :foods, :recipe_foods).all.order(created_at: :desc).where(public: true)
   end
 
   # GET /recipes/1 or /recipes/1.json
   def show
-    @recipe = Recipe.includes(:recipe_foods, recipe_foods: [:food]).find(params[:id])
+    @recipe = Recipe.includes(:recipe_foods, recipe_foods: %i[food recipe]).find(params[:id])
     @foods = Food.where(user_id: current_user.id)
-    @ingredient = RecipeFood.new()
+    @ingredient = RecipeFood.new
   end
 
   # GET /recipes/new
@@ -43,13 +40,12 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated." }
+        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
         format.html { render :edit, status: :unprocessable_entity }

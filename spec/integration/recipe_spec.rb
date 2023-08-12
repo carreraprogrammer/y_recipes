@@ -7,11 +7,14 @@ RSpec.describe 'recipes/index.html.erb', type: :view do
       # Assuming you have set up Devise test helpers or similar, you can use sign_in to simulate user authentication.
       sign_in @user
 
-      @recipe1 = Recipe.create(name: 'cookies', user_id: @user.id, preparation_time_minutes: 34, cooking_time_minutes: 45,
+      @recipe1 = Recipe.create(name: 'cookies', user_id: @user.id, preparation_time_minutes: 34,
+                               cooking_time_minutes: 45,
                                description: 'test recipe 1', public: true)
-      @recipe2 = Recipe.create(name: 'cake', user_id: @user.id, preparation_time_minutes: 34, cooking_time_minutes: 45,
+      @recipe2 = Recipe.create(name: 'cake', user_id: @user.id, preparation_time_minutes: 34,
+                               cooking_time_minutes: 45,
                                description: 'test recipe 2', public: true)
-      @recipe3 = Recipe.create(name: 'broth', user_id: @user.id, preparation_time_minutes: 34, cooking_time_minutes: 45,
+      @recipe3 = Recipe.create(name: 'broth', user_id: @user.id, preparation_time_minutes: 34,
+                               cooking_time_minutes: 45,
                                description: 'test recipe 3', public: true)
 
       # Stub the view's current_user method to return the @user variable

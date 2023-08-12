@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'test_helper'
 
 class RecipesControllerTest < ActionDispatch::IntegrationTest
@@ -20,8 +18,12 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   test 'should create recipe' do
     assert_difference('Recipe.count') do
       post recipes_url,
-           params: { recipe: { cooking_time_minutes: @recipe.cooking_time_minutes, description: @recipe.description,
-                               name: @recipe.name, preparation_time_minutes: @recipe.preparation_time_minutes, public: @recipe.public, user_id: @recipe.user_id } }
+           params: { recipe: { cooking_time_minutes: @recipe.cooking_time_minutes,
+                               description: @recipe.description,
+                               name: @recipe.name,
+                               preparation_time_minutes: @recipe.preparation_time_minutes,
+                               public: @recipe.public,
+                               user_id: @recipe.user_id } }
     end
 
     assert_redirected_to recipe_url(Recipe.last)
@@ -39,8 +41,11 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update recipe' do
     patch recipe_url(@recipe),
-          params: { recipe: { cooking_time_minutes: @recipe.cooking_time_minutes, description: @recipe.description,
-                              name: @recipe.name, preparation_time_minutes: @recipe.preparation_time_minutes, public: @recipe.public, user_id: @recipe.user_id } }
+          params: { recipe: { cooking_time_minutes: @recipe.cooking_time_minutes,
+                              description: @recipe.description,
+                              name: @recipe.name,
+                              preparation_time_minutes: @recipe.preparation_time_minutes,
+                              public: @recipe.public, user_id: @recipe.user_id } }
     assert_redirected_to recipe_url(@recipe)
   end
 
