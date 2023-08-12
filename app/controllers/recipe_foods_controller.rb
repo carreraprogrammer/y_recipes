@@ -54,7 +54,7 @@ class RecipeFoodsController < ApplicationController
   def shopping_list
     @recipe_foods = RecipeFood
       .includes(:food, :recipe)
-      .where(recipes: { user_id: current_user.id })
+      .where(recipes: { public: true })
       .group_by(&:food_id)
   end
 

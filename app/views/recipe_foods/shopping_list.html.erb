@@ -8,11 +8,17 @@
     </tr>
     <% @recipe_foods.each do |food_id, recipe_foods| %>
       <% food = Food.find(food_id) %>
-      <%if recipe_foods.sum(&:total_quantity) > food.quantity %>
+      <%if recipe_foods.sum(&:total_quantity) > food.quantity  %>
         <tr>
           <td><%= food.name %></td>
-          <td><%= recipe_foods.sum(&:total_quantity) - food.quantity %></td>
+          <td><%= recipe_foods.sum(&:total_quantity) - food.quantity %> <%= food.measurement_unit %></td>
           <td>$ <%= (recipe_foods.map(&:quantity).sum - food.quantity) * food.price %></td>
+        </tr>
+      <%else%>
+         <tr>
+          <td><%= food.name %></td>
+          <td><%= recipe_foods.sum(&:total_quantity) %> <%= food.measurement_unit %></td>
+          <td>$ <%= recipe_foods.map(&:quantity).sum  * food.price %></td>
         </tr>
       <%end%>
     <% end %>

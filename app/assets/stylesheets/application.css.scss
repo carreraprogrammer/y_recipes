@@ -32,6 +32,12 @@ button {
   cursor: pointer;
 }
 
+.textAreaDescriptionRecipe {
+  width: 100%;
+  height: 4rem;
+  padding: 10px;
+}
+
 .publicChangeForm {
   @include center;
 }
