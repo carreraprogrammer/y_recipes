@@ -6,43 +6,58 @@
   <h1 class="pageTitle"> <%= capitalize_text(@recipe.name) %></h1>
   <div class="recipeShowGeneralInfo">
     <p class="preparationTime"><strong>Preparation Time: </strong> <%= @recipe.preparation_time_minutes %></p>
-    <%= render 'shared/change_public', recipe: @recipe %>
+
+    <!-- Include the toggle switch here -->
+    <div class="toggle-container">
+      <label class="switch">
+        <input type="checkbox" <%= @recipe.public? ? 'checked' : '' %>>
+        <span class="slider round"></span>
+      </label>
+    </div>
+
     <p class="cookingTime"><strong>Cooking Time: </strong> <%= @recipe.cooking_time_minutes %></p>
     <p class="recipeDescription"><%= @recipe.description %></p>
-    <%if recipe_author?(@recipe.user)%>
-      <button ><%= link_to "Generate Shopping List", shopping_list_path %></button>
+    <% if recipe_author?(@recipe.user) %>
+      <button><%= link_to "Generate Shopping List", shopping_list_path %></button>
       <button id="addIngredientButton">Add Ingredient</button>
-    <%end%>
+    <% end %>
   </div>
-    <%= render 'shared/ingredient_form', ingredient: @ingredient %>
-    <%= turbo_frame_tag "edit_modal" %>
-    <table class="ingredientsTable">
+  <%= render 'shared/ingredient_form', ingredient: @ingredient %>
+  <%= turbo_frame_tag "edit_modal" %>
+  <table class="ingredientsTable">
+    <tr>
+      <th> Food </th>
+      <th> Quantity </th>
+      <th> Value </th>
+      <th> Actions </th>
+    </tr>
+    <% @recipe.recipe_foods.order(id: :asc).each do |ingredient| %>
       <tr>
-        <th> Food </th>
-        <th> Quantity </th>
-        <th> Value </th>
-        <th> Actions </th>
+        <td><%= ingredient.food.name %></td>
+        <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %>s</td>
+        <td>$<%= ingredient.total_price %></td>
+        <td class="ingredientButtons">
+          <% if recipe_author?(@recipe.user) %>
+            <%= link_to "Edit", edit_recipe_food_path(ingredient), data: { turbo_frame: "edit_modal" } %>
+            <%= button_to "Remove", ingredient, method: :delete, class: "removeBtn" %>
+          <% else %>
+            <p> You aren't the author of this recipe </p>
+          <% end %>
+        </td>
       </tr>
-      <% @recipe.recipe_foods.order(id: :asc).each do |ingredient| %>
-        <tr>
-          <td><%= ingredient.food.name %></td>
-          <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %>s</td>
-          <td>$<%= ingredient.total_price %></td>
-          <td class="ingredientButtons">
-            <%if recipe_author?(@recipe.user)%>
-              <%= link_to "Edit", edit_recipe_food_path(ingredient), data: { turbo_frame: "edit_modal" } %>
-              <%= button_to "Remove", ingredient, method: :delete, class: "removeBtn"%>
-            <%else%>
-              <p> You aren't the author of this recipe </p>
-            <%end%>
-          </td>
-        </tr>
-      <% end %>
-    </table>
+    <% end %>
+  </table>
 </div>
 
 <script>
-  document.getElementById("addIngredientButton").addEventListener("click", function() {
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleSwitch = document.querySelector(".toggle-container input[type='checkbox']");
+
+    toggleSwitch.addEventListener("change", () => {
+      // Perform an action when the switch state changes
+    });
+  });
+    document.getElementById("addIngredientButton").addEventListener("click", function() {
     const ingredientForm = document.querySelector(".ingredientForm");
     button = document.getElementById("addIngredientButton");
     button.innerText = button.innerText == "Add Ingredient" ? "Cancel" : "Add Ingredient";
