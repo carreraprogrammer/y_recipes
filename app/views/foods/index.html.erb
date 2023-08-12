@@ -4,11 +4,6 @@
 
   <%= button_to "Add New Food", new_food_path, method: :get, class: "add-food-button" %>
 
-
-  <% if flash[:notice] %>
-    <p class="notice"><%= flash[:notice] %></p>
-  <% end %>
-
   <% if @foods.any? %>
     <table class="foods-table">
       <thead>
