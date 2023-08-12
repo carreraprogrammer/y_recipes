@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all.order(created_at: :desc).where(user_id: current_user.id)
+    @recipes = Recipe.includes(:foods).all.order(created_at: :desc).where(user_id: current_user.id)
 
   end
 
@@ -17,7 +17,8 @@ class RecipesController < ApplicationController
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.includes(:recipe_foods, recipe_foods: [:food]).find(params[:id])
-    @foods = Food.all
+    @foods = Food.where(user_id: current_user.id)
+    @ingredient = RecipeFood.new()
   end
 
   # GET /recipes/new
@@ -29,6 +30,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
+    @foods = Food.where(user_id: current_user.id)
 
     respond_to do |format|
       if @recipe.save

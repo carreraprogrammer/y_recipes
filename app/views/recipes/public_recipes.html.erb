@@ -11,8 +11,8 @@
         <% end %>
       </h2>
       <p>
-        Total Food Items: <br>
-        Total Price:
+        Total Food Items: <%= recipe.foods.count%> <br>
+        Total Price: <%= recipe.total_price %>
       </p>
       <p>By: <%= recipe.user.name %></p>
     </div>
