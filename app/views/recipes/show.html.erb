@@ -9,8 +9,8 @@
     <%= render 'shared/change_public', recipe: @recipe %>
     <p class="cookingTime"><strong>Cooking Time: </strong> <%= @recipe.cooking_time_minutes %></p>
     <p class="recipeDescription"><%= @recipe.description %></p>
-    <%if recipe_author?(@recipe.user)%>
       <button ><%= link_to "Generate Shopping List", shopping_list_path %></button>
+    <%if recipe_author?(@recipe.user)%>
       <button id="addIngredientButton">Add Ingredient</button>
     <%end%>
   </div>
