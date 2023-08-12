@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "application", "data-track-turbo": "true", defer: true %>
+    <%= javascript_importmap_tags %> 
   </head>
 
   <body>
@@ -19,12 +14,7 @@
       <%= render 'shared/navbar'%>
     <%end%>
     <%= render 'shared/flash' %>
-    <%= turbo_frame_tag "edit_modal" %>
     <%= yield %>
-      <script>
-      setTimeout(function() {
-        document.getElementById("flash-notice").style.display = "none";
-    }, 3000)
-    </script>
+
   </body>
 </html>

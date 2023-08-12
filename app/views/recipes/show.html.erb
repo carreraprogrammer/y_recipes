@@ -12,6 +12,8 @@
     <button ><%= link_to "Generate Shopping List", shopping_list_path %></button>
     <button id="addIngredientButton">Add Ingredient</button>
   </div>
+    <%= render 'shared/ingredient_form', ingredient: @ingredient %>
+    <%= turbo_frame_tag "edit_modal" %>
     <table class="ingredientsTable">
       <tr>
         <th> Food </th>
@@ -19,37 +21,26 @@
         <th> Value </th>
         <th> Actions </th>
       </tr>
-      <% @recipe.recipe_foods.each do |ingredient| %>
+      <% @recipe.recipe_foods.order(id: :asc).each do |ingredient| %>
         <tr>
           <td><%= ingredient.food.name %></td>
           <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %>s</td>
           <td>$<%= ingredient.total_price %></td>
-          <td>
+          <td class="ingredientButtons">
             <%= link_to "Edit", edit_recipe_food_path(ingredient), data: { turbo_frame: "edit_modal" } %>
             <%= button_to "Remove", ingredient, method: :delete %>
           </td>
         </tr>
       <% end %>
-      <tr class="ingredientForm"> <!-- Added class -->
-        <%= form_with(model: RecipeFood.new(), url: recipe_foods_path, class: "ingredientForm") do |form| %>
-          <%= form.hidden_field :recipe_id, value: @recipe.id %>
-          <td>
-            <%= form.select :food_id, options_for_select(@foods.map { |food| [food.name, food.id] }) %>
-          </td>
-          <td>
-            <%= form.number_field :quantity, placeholder: "Quantity" %>
-          </td>
-          <td>Add ingredient here</td>
-          <td><%= form.submit %></td>
-        <% end %>
-      </tr>
     </table>
 </div>
 
 <script>
   document.getElementById("addIngredientButton").addEventListener("click", function() {
     const ingredientForm = document.querySelector(".ingredientForm");
-    const ingredientInput = document.querySelector("#getName");
-    ingredientForm.style.display = ingredientForm.style.display === "table-row" ? "none" : "table-row";
+    button = document.getElementById("addIngredientButton");
+    button.innerText = button.innerText == "Add Ingredient" ? "cancel" : "Add Ingredient";
+    button.classList.toggle("cancelButton");
+    ingredientForm.style.display = ingredientForm.style.display == "flex" ? "none" : "flex";
   });
 </script>

@@ -84,7 +84,7 @@ button {
 
 .generalContainer {
   @include center-column;
-  margin-top: 50px;
+  margin: 50px;
 }
 
 /* STYLES FOR RECIPE INDEX */
@@ -124,6 +124,24 @@ button {
 
 /* STYLES FOR RECIPE SHOW */
 
+.ingredientForm {
+  display: none;
+  border: 1px solid black;
+  width: 70%;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  margin: 24px;
+}
+
+.cancelButton {
+  background-color: white;
+  border: 2px solid red;
+  color: red;
+  padding: 5px;
+  cursor: pointer;
+}
+
 .recipeShowGeneralInfo {
   width: 95%;
   border-bottom: 1px solid black;
@@ -157,14 +175,23 @@ button {
 }
 
 #edit_modal {
-  position: absolute;
-  z-index: 2;
-  right: 10px;
-  top: 10px;
   width: 400px;
   word-break: break-word;
   border-radius: 6px;
   background: #bad5ff;
+  margin: 24px;
+  input {
+    margin: 6px;
+  }
+  select {
+    margin: 6px;
+  } 
+  label {
+    margin: 6px;
+  }
+  button {
+    margin: 6px;
+  }
 }
 
 /* FOR PUBLIC RECIPES */
@@ -257,18 +284,6 @@ button {
       font-size: 1.5rem;
       padding: 12px;
       width: 25%;
-    }
-    .ingredientForm {
-      display: none;
-      #ingredientSubmit {
-        background-color: white;
-        padding: 5px;
-        cursor: pointer;
-      }
-      td {
-        height: 3rem;
-        padding: 2px;
-      }
     }
   }
 
