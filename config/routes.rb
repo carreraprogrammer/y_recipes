@@ -10,10 +10,11 @@ Rails.application.routes.draw do
     password: 'password',
     confirmation: 'verification'
   }
+  get 'shopping_list', to: 'recipe_foods#shopping_list'
   get 'public_recipes', to: 'recipes#public_recipes'
   resources :recipes
   resources :foods
-  resources :recipe_foods
+  resources :recipe_foods, only: [:edit, :update, :destroy, :create]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

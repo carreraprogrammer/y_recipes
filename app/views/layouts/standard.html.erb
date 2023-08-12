@@ -6,10 +6,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-track-turbo": "true", defer: true %>
   </head>
 
   <body>
@@ -17,6 +19,7 @@
       <%= render 'shared/navbar'%>
     <%end%>
     <%= render 'shared/flash' %>
+    <%= turbo_frame_tag "edit_modal" %>
     <%= yield %>
       <script>
       setTimeout(function() {
