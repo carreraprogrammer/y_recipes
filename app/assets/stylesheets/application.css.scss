@@ -71,7 +71,6 @@ a:hover {
   height: 50px;
 }
 
-
 /* Additional styles for the form page */
 .formContainer {
   @include center-column;
@@ -236,7 +235,6 @@ a:hover {
     }
   }
 
-
   /* STYLES FOR RECIPE SHOW */
 
   .ingredientForm {
@@ -373,7 +371,6 @@ a:hover {
       }
     }
 
-
     /* SHOPPING LIST VIEW */
 
     .shoppingListContainer {
@@ -383,7 +380,6 @@ a:hover {
         @include table-styles;
       }
     }
-
 
     /* PC STYLES */
 
