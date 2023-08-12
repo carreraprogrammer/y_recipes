@@ -17,4 +17,9 @@
     <%= yield %>
 
   </body>
+  <script>
+    setTimeout(function() {
+      document.getElementById("flash-notice").style.display = "none";
+  }, 3000)
+  </script>
 </html>
