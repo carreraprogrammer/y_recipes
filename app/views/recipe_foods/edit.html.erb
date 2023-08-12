@@ -1,6 +1,8 @@
 <h1>Editing recipe food</h1>
 
-<%= render "form", recipe_food: @recipe_food %>
+<%=turbo_frame_tag "edit_modal" do%>
+  <%= render "form", recipe_food: @recipe_food%>
+<%end%>
 
 <br>
 

@@ -25,7 +25,7 @@
           <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %>s</td>
           <td>$<%= ingredient.total_price %></td>
           <td>
-            <a> Edit </a>
+            <%= link_to "Edit", edit_recipe_food_path(ingredient), data: { turbo_frame: "edit_modal" } %>
             <%= button_to "Remove", ingredient, method: :delete %>
           </td>
         </tr>
