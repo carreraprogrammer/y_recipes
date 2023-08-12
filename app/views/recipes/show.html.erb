@@ -45,7 +45,7 @@
   document.getElementById("addIngredientButton").addEventListener("click", function() {
     const ingredientForm = document.querySelector(".ingredientForm");
     button = document.getElementById("addIngredientButton");
-    button.innerText = button.innerText == "Add Ingredient" ? "cancel" : "Add Ingredient";
+    button.innerText = button.innerText == "Add Ingredient" ? "Cancel" : "Add Ingredient";
     button.classList.toggle("cancelButton");
     ingredientForm.style.display = ingredientForm.style.display == "flex" ? "none" : "flex";
   });
