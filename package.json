@@ -3,5 +3,11 @@
   "private": "true",
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^5.0.0",
+    "stylelint": "^15.10.2",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-prettier": "^4.0.2"
   }
 }
