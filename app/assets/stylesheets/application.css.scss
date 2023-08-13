@@ -1,0 +1,835 @@
+
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* END RESET */
+
+@import 'mixins';
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  min-height: 100vh;
+
+  @include center-column;
+}
+
+button {
+  cursor: pointer;
+}
+
+.textAreaDescriptionRecipe {
+  width: 100%;
+  height: 4rem;
+  padding: 10px;
+}
+
+.publicChangeForm {
+  @include center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.publicText {
+  font-size: 16px;
+  margin: 12px;
+  font-weight: bold;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: green;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider::before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+.back-link {
+  text-align: center;
+  margin-top: 20px;
+
+  a {
+    font-size: 1.2rem;
+    color: #337ab7;
+    text-decoration: underline;
+  }
+}
+
+.removeBtn {
+  border: none;
+  background-color: white;
+}
+
+.removeBtn:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+.backButton {
+  position: absolute;
+  top: 70px;
+  left: 50px;
+}
+
+a:hover {
+  color: green;
+  text-decoration: underline;
+}
+
+.appButtons {
+  @include center;
+
+  padding: 24px;
+  max-width: 300px;
+  border: 1px solid black;
+  margin: 24px;
+  height: 50px;
+}
+
+.navbar {
+  @include center;
+
+  justify-content: space-around;
+  height: 50px;
+  border: 1px solid black;
+  background-color: #f5f5f5;
+  width: 100%;
+  font-size: 16px;
+  position: absolute;
+  top: 0;
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    color: #337ab7;
+  }
+
+  a:active {
+    color: #337ab7;
+  }
+
+  .logOut:hover {
+    color: red;
+  }
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 24px;
+  text-align: center;
+}
+
+.generalContainer {
+  @include center-column;
+
+  width: 100%;
+  margin: 50px;
+}
+
+/* STYLES FOR RECIPE INDEX */
+
+.recipeIndexContainer {
+  @include center;
+
+  border: 1px solid black;
+  width: 95%;
+  min-height: 20vh;
+  margin-top: 20px;
+
+  div {
+    @include center-column;
+
+    justify-content: flex-end;
+    flex-basis: 40%;
+    height: 100%;
+    min-height: 20vh;
+
+    h2 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    button {
+      text-decoration: underline;
+      border: none;
+      background-color: white;
+      color: #337ab7;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 24px;
+    }
+  }
+
+  p {
+    flex-basis: 60%;
+    font-size: 16px;
+  }
+}
+
+/* STYLES FOR RECIPE SHOW */
+
+.ingredientForm {
+  display: none;
+  border: 1px solid black;
+  width: 70%;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  margin: 24px;
+}
+
+.cancelButton {
+  background-color: white;
+  border: 2px solid red;
+  color: red;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.recipeShowGeneralInfo {
+  width: 95%;
+  border-bottom: 1px solid black;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 12px;
+
+  * {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  div {
+    @include center;
+
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  button,
+  .add-ingredient-button {
+    @include center;
+
+    width: 80%;
+    margin-left: 10%;
+    padding: 5px;
+    border: 1px solid black;
+    max-width: 300px;
+  }
+
+  .cookingTime,
+  .recipeDescription {
+    grid-column: 2 span;
+    text-align: left;
+  }
+
+  .preparationTime {
+    text-align: left;
+  }
+}
+
+.ingredientsTable {
+  @include table-styles;
+}
+
+#edit_modal {
+  width: 400px;
+  word-break: break-word;
+  border-radius: 6px;
+  background: #bad5ff;
+  margin: 24px;
+
+  input {
+    margin: 6px;
+  }
+
+  select {
+    margin: 6px;
+  }
+
+  label {
+    margin: 6px;
+  }
+
+  button {
+    margin: 6px;
+  }
+}
+
+/* RECIPE FOOD FORM */
+.recipe-food-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid black;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.error-messages {
+  color: red;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+  }
+}
+
+.form-actions {
+  margin-top: 1rem;
+}
+
+/* FOR PUBLIC RECIPES */
+
+.publicRecipeContainer {
+  border: 1px solid black;
+  width: 95%;
+  margin: 12px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+
+  * {
+    @include center;
+  }
+
+  h2 {
+    a {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+/* SHOPPING LIST VIEW */
+
+.shoppingListContainer {
+  @include center-column;
+
+  table {
+    @include table-styles;
+  }
+}
+
+/* PC STYLES */
+
+@media (min-width: 768px) {
+  .navbar {
+    font-size: 1rem;
+  }
+
+  /* STYLES FOR RECIPE INDEX PC */
+
+  .recipeIndexContainer {
+    width: 80%;
+
+    div {
+      flex-basis: 50%;
+
+      h2 {
+        font-size: 2.5rem;
+      }
+
+      button {
+        font-size: 1rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  /* FOR RECIPE SHOW PC */
+
+  .recipeShowGeneralInfo {
+    width: 70%;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    padding: 24px;
+
+    * {
+      text-align: center;
+    }
+
+    div {
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      width: 50%;
+      margin-left: 25%;
+      height: 50px;
+    }
+  }
+
+  .ingredientsTable {
+    width: 70%;
+
+    th {
+      font-size: 1.5rem;
+      padding: 12px;
+      width: 25%;
+    }
+
+    td {
+      font-size: 1rem;
+      padding: 12px;
+      width: 25%;
+    }
+  }
+
+  /* FOR PUBLIC RECIPE */
+  .publicRecipeContainer {
+    width: 70%;
+    margin: 24px;
+    padding: 24px;
+    min-height: 25vh;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+
+  .shoppingListContainer {
+    min-height: 100vh;
+    width: 100vw;
+
+    table {
+      width: 70%;
+
+      th {
+        font-size: 1.5rem;
+        padding: 12px;
+        width: 25%;
+      }
+
+      td {
+        font-size: 1rem;
+        padding: 12px;
+        width: 25%;
+      }
+    }
+  }
+}
+
+/* Additional styles for the form page */
+.formContainer {
+  @include center-column;
+
+  margin-top: 50px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  height: 70%;
+  width: 20%;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  form {
+    width: 100%;
+    max-width: 400px;
+
+    div {
+      margin-bottom: 15px;
+
+      label {
+        font-size: 1.2rem;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #337ab7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #23527c;
+      }
+    }
+  }
+
+  a {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #337ab7;
+    text-decoration: underline;
+  }
+}
+
+/* Additional styles for the foods index page */
+.foods-index-container {
+  @include center-column;
+
+  width: 100%;
+  margin-top: 50px;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .add-food-button {
+    margin: 24px;
+    border: 1px solid black;
+    padding: 12px;
+    background-color: white;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+  }
+
+  .add-food-button:hover {
+    background-color: #f5f5f5;
+  }
+
+  .notice {
+    font-size: 1.2rem;
+    color: green;
+  }
+}
+
+.foods-table {
+  @include table-styles;
+
+  width: 70%;
+
+  #delete-btn-container {
+    @include center;
+  }
+}
+
+.form-button-field {
+  display: flex;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #d32f2f;
+    transform: scale(0.9);
+  }
+}
+
+.form-page-container {
+  @include center-column;
+
+  width: 100%;
+  margin-top: 50px;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.login-container {
+  @include center-column;
+
+  margin-top: 50px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+
+  .login-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .login-form {
+    width: 100%;
+
+    .form-field {
+      margin-bottom: 15px;
+
+      .input-label {
+        font-size: 1.2rem;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .remember-field {
+        display: flex;
+        align-items: center;
+
+        .remember-checkbox {
+          margin-right: 5px;
+        }
+
+        .remember-label {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .form-actions {
+      margin-top: 15px;
+
+      .login-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #337ab7;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #23527c;
+        }
+      }
+    }
+  }
+
+  .shared-links {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #337ab7;
+    text-decoration: underline;
+  }
+}
+
+.signup-container {
+  @include center-column;
+
+  margin-top: 50px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+
+  .signup-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .signup-form {
+    width: 100%;
+
+    .form-field {
+      margin-bottom: 15px;
+
+      .input-label {
+        font-size: 1.2rem;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    }
+
+    .form-actions {
+      margin-top: 15px;
+
+      .signup-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #337ab7;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #23527c;
+        }
+      }
+    }
+  }
+
+  .shared-links {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #337ab7;
+    text-decoration: underline;
+  }
+}
+
+.welcome-container {
+  @include center-column;
+
+  margin-top: 100px;
+  text-align: center;
+
+  .welcome-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .welcome-message {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .welcome-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &.signup-button {
+        background-color: #337ab7;
+        color: white;
+
+        &:hover {
+          background-color: #23527c;
+        }
+      }
+
+      &.signin-button {
+        background-color: #5cb85c;
+        color: white;
+
+        &:hover {
+          background-color: #449d44;
+        }
+      }
+    }
+  }
+}

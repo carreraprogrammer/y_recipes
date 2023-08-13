@@ -1,0 +1,13 @@
+<div class="generalContainer">
+  <h1 class="pageTitle"> MY RECIPES </h1>
+  <%if recipes?%>
+    <% @recipes.each do |recipe| %>
+      <%= render recipe %>
+    <% end %>
+  <%else%>
+    <p> You have no recipes yet. But you can add some bellow !! </p>
+  <%end%>
+
+  <%= link_to "New recipe", new_recipe_path, class: "appButtons" %>
+
+</div>

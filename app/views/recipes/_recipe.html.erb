@@ -1,0 +1,15 @@
+
+  <div class="recipeIndexContainer" >
+    <div>
+      <h2>
+        <%= link_to recipe_path(recipe.id) do %> 
+          <strong><%= recipe.name %></strong>
+        <% end %>
+      </h2>
+        <%= button_to "REMOVE", recipe_path(recipe), method: :delete %>
+    </div>
+
+    <p>
+      <%= recipe.description %>
+    </p>
+  </div>

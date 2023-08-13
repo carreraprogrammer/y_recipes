@@ -1,0 +1,43 @@
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin center-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin table-styles {
+  width: 70%;
+  border: 1px solid black;
+  margin-top: 24px;
+
+  th {
+    font-size: 1.5rem;
+    padding: 5px;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #f0f0f0; // Gray color for even rows
+  }
+
+  td {
+    font-size: 1rem;
+    padding: 5px;
+    text-align: left;
+  }
+
+  .ingredientButtons {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+}

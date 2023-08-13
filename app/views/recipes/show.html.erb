@@ -1,0 +1,43 @@
+<div class="generalContainer">
+  <div>
+    <%= link_to "Back to recipes", recipes_path, class: "backButton" %>
+  </div>
+
+  <h1 class="pageTitle"> <%= capitalize_text(@recipe.name) %></h1>
+  <div class="recipeShowGeneralInfo">
+    <p class="preparationTime"><strong>Preparation Time: </strong> <%= @recipe.preparation_time_minutes %></p>
+    <%= render 'shared/change_public', recipe: @recipe %>
+    <p class="cookingTime"><strong>Cooking Time: </strong> <%= @recipe.cooking_time_minutes %></p>
+    <p class="recipeDescription"><%= @recipe.description %></p>
+      <button ><%= link_to "Generate Shopping List", shopping_list_path %></button>
+    <%if recipe_author?(@recipe.user)%>
+      <%= link_to "New recipe food", new_recipe_food_path(recipe_id: @recipe.id), class: "add-ingredient-button" %>
+    <%end%>
+  </div>
+    <%= render 'shared/ingredient_form', ingredient: @ingredient %>
+    <%= turbo_frame_tag "edit_modal" %>
+    <table class="ingredientsTable">
+      <tr>
+        <th> Food </th>
+        <th> Quantity </th>
+        <th> Value </th>
+        <th> Actions </th>
+      </tr>
+      <% @recipe.recipe_foods.order(id: :asc).each do |ingredient| %>
+        <tr>
+          <td><%= ingredient.food.name %></td>
+          <td><%= ingredient.quantity %> <%= ingredient.food.measurement_unit %>s</td>
+          <td>$<%= ingredient.total_price %></td>
+          <td class="ingredientButtons">
+            <%if recipe_author?(@recipe.user)%>
+              <%= link_to "Edit", edit_recipe_food_path(ingredient), data: { turbo_frame: "edit_modal" } %>
+              <%= button_to "Remove", ingredient, method: :delete, class: "removeBtn"%>
+            <%else%>
+              <p> You aren't the author of this recipe </p>
+            <%end%>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+</div>
+

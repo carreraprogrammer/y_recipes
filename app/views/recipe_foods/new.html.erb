@@ -1,0 +1,5 @@
+<h1 class="pageTitle">Add ingredient to <%= Recipe.find(params[:recipe_id]).name %></h1>
+
+<%= render "form", recipe_food: @recipe_food %>
+
+<br>

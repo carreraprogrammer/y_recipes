@@ -1,0 +1,24 @@
+<h1>Editing recipe food</h1>
+<%=turbo_frame_tag "edit_modal" do%>
+  <%= render "form", recipe_food: @recipe_food%>
+  <%= button_to "Close", recipe_food_path(@recipe_food.recipe), id: "closeModal", method: :get %>
+  <script>
+   document.getElementById("closeModal").addEventListener("click", function() {
+      modal = document.getElementById("edit_modal");
+      modal.style.display = modal.style.display == "flex" ? "none" : "flex";
+  });
+
+  document.getElementById("edit_modal").addEventListener("submit", function() {
+      modal = document.getElementById("edit_modal");
+      modal.remove()
+      window.location.reload();
+  });
+  </script>
+<%end%>
+
+<br>
+
+<div>
+  <%= link_to "Show this recipe food", @recipe_food %> |
+  <%= link_to "Back to recipe foods", recipe_foods_path %>
+</div>

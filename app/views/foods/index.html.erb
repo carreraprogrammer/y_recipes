@@ -1,0 +1,35 @@
+<!-- app/views/foods/index.html.erb -->
+
+<div class="foods-index-container">
+
+  <%= button_to "Add New Food", new_food_path, method: :get, class: "add-food-button" %>
+
+  <% if @foods.any? %>
+    <table class="foods-table">
+      <thead>
+        <tr>
+          <th>Food Name</th>
+          <th>Measurement Unit</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @foods.each do |food| %>
+          <tr>
+            <td><%= food.name %></td>
+            <td><%= food.measurement_unit %></td>
+            <td><%= number_to_currency(food.price) %></td>
+            <td><%= food.quantity %></td>
+            <td id="delete-btn-container">
+              <%= button_to "Delete", food_path(food), method: :delete, class: "delete-btn" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No food available.</p>
+  <% end %>
+</div>
