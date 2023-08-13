@@ -25,11 +25,10 @@ class RecipeFoodsController < ApplicationController
     respond_to do |format|
       if @recipe_food.save
         flash[:notice] = 'Food added to recipe'
-        format.html { redirect_to recipe_path(@recipe_food.recipe) }
       else
         flash[:alert] = @recipe_food.errors.full_messages.join(', ')
-        format.html { redirect_to recipe_path(@recipe_food.recipe) }
       end
+      format.html { redirect_to recipe_path(@recipe_food.recipe) }
       format.html { redirect_to recipe_path(@recipe_food.recipe) }
     end
   end

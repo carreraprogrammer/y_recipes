@@ -274,7 +274,8 @@ a:hover {
     gap: 10px;
   }
 
-  button, .add-ingredient-button{
+  button,
+  .add-ingredient-button {
     @include center;
 
     width: 80%;
