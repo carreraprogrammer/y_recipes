@@ -11,7 +11,7 @@
     <p class="recipeDescription"><%= @recipe.description %></p>
       <button ><%= link_to "Generate Shopping List", shopping_list_path %></button>
     <%if recipe_author?(@recipe.user)%>
-      <button id="addIngredientButton">Add Ingredient</button>
+      <%= link_to "New recipe food", new_recipe_food_path(recipe_id: @recipe.id), class: "add-ingredient-button" %>
     <%end%>
   </div>
     <%= render 'shared/ingredient_form', ingredient: @ingredient %>
@@ -41,12 +41,3 @@
     </table>
 </div>
 
-<script>
-  document.getElementById("addIngredientButton").addEventListener("click", function() {
-    const ingredientForm = document.querySelector(".ingredientForm");
-    button = document.getElementById("addIngredientButton");
-    button.innerText = button.innerText == "Add Ingredient" ? "Cancel" : "Add Ingredient";
-    button.classList.toggle("cancelButton");
-    ingredientForm.style.display = ingredientForm.style.display == "flex" ? "none" : "flex";
-  });
-</script>

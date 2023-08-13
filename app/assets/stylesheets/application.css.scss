@@ -274,12 +274,14 @@ a:hover {
     gap: 10px;
   }
 
-  button {
+  button, .add-ingredient-button{
     @include center;
 
     width: 80%;
     margin-left: 10%;
     padding: 5px;
+    border: 1px solid black;
+    max-width: 300px;
   }
 
   .cookingTime,
@@ -319,6 +321,34 @@ a:hover {
   button {
     margin: 6px;
   }
+}
+
+/* RECIPE FOOD FORM */
+.recipe-food-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid black;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.error-messages {
+  color: red;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+  }
+}
+
+.form-actions {
+  margin-top: 1rem;
 }
 
 /* FOR PUBLIC RECIPES */
